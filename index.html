@@ -15,8 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css?v=10" />
+    <script src="script.js?v=11" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -43,7 +43,15 @@
         <a href="#atuacao">Atuação</a>
         <a href="#depoimentos">Depoimentos</a>
         <a href="#unidades">Unidades</a>
+        <a
+          class="menu-nav-cta"
+          href="https://wa.me/5527996617730?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Leandro%20Batisti."
+          target="_blank"
+          rel="noreferrer"
+        ><span class="whatsapp-dot" aria-hidden="true"></span> Agendar avaliação</a>
       </nav>
+
+      <button class="menu-backdrop" type="button" tabindex="-1" aria-label="Fechar menu"></button>
 
       <a
         class="header-cta"
@@ -59,6 +67,13 @@
       <section class="hero" id="inicio" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow hero-reveal">Cirurgia cardiovascular · Espírito Santo</p>
+          <div class="mobile-doctor-id hero-reveal">
+            <img
+              src="https://img1.wsimg.com/isteam/ip/da7dcdf5-0b69-4544-b73c-b208b347fd43/62b8e4c6-66a9-40db-bce5-7d18984930c1-0001.JPG/:/rs=w:180,h:180,cg:true,m/cr=w:180,h:180"
+              alt="Retrato do Dr. Leandro Batisti"
+            />
+            <span><strong>Dr. Leandro Batisti</strong>Cirurgião cardiovascular<small>CRM-ES 9.973 · RQE 11.811</small></span>
+          </div>
           <h1 id="hero-title" class="hero-reveal">
             Experiência<br />
             técnica. Cuidado<br />
@@ -110,6 +125,23 @@
             <path d="M0 68h118l18-24 24 62 29-91 30 53h64l20-18 22 18h115" />
           </svg>
         </div>
+      </section>
+
+      <section class="decision-strip" aria-label="Informações essenciais para sua decisão">
+        <div class="decision-intro">
+          <span>Antes de escolher</span>
+          <strong>Respostas rápidas para uma decisão mais segura.</strong>
+        </div>
+        <article><span>01</span><strong>CRM-ES 9.973</strong><small>RQE 11.811 · Cirurgia Cardiovascular</small></article>
+        <article><span>02</span><strong>UFES · USP · InCor</strong><small>Formação médica e cirúrgica</small></article>
+        <article><span>03</span><strong>Segunda opinião</strong><small>Análise especializada do seu caso</small></article>
+        <article><span>04</span><strong>Cariacica · Vila Velha</strong><small>Duas unidades de atendimento</small></article>
+        <a
+          class="decision-cta"
+          href="https://wa.me/5527996617730?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20se%20a%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Leandro%20Batisti%20%C3%A9%20indicada%20para%20o%20meu%20caso."
+          target="_blank"
+          rel="noreferrer"
+        >Meu caso pode ser avaliado? <span aria-hidden="true">↗</span></a>
       </section>
 
       <section class="motion-story" id="movimento" data-motion-story aria-labelledby="motion-story-title">
@@ -167,16 +199,6 @@
         </div>
       </section>
 
-      <section class="credentials" aria-label="Formação e credenciais">
-        <div class="credentials-track">
-          <article><span>01</span><strong>UFES</strong><small>Graduação em Medicina</small></article>
-          <article><span>02</span><strong>USP</strong><small>Residência em Cirurgia Geral</small></article>
-          <article><span>03</span><strong>InCor</strong><small>Cirurgia Cardiovascular</small></article>
-          <article><span>04</span><strong>SBCCV</strong><small>Título de Especialista</small></article>
-          <article><span>05</span><strong>ELSO</strong><small>Especialista em ECMO</small></article>
-        </div>
-      </section>
-
       <section class="kinetic-band" aria-label="Princípios do atendimento">
         <div class="kinetic-track" aria-hidden="true">
           <span>Ciência</span><i>·</i><span>Precisão</span><i>·</i><span>Cuidado</span><i>·</i><span>Clareza</span><i>·</i>
@@ -225,11 +247,20 @@
       <section class="practice section" id="atuacao" aria-labelledby="practice-title">
         <div class="section-kicker light reveal"><span>02</span> Atuação</div>
         <div class="practice-intro reveal">
-          <h2 id="practice-title">Cuidado cardiovascular<br />em todas as etapas.</h2>
+          <h2 id="practice-title">Entenda quando uma<br />avaliação pode ajudar.</h2>
           <p>
-            Da avaliação inicial ao acompanhamento após o procedimento, cada conduta parte de uma
-            análise individual e de uma conversa transparente com o paciente e sua família.
+            Cada caso exige análise individual. O primeiro encontro organiza o histórico, os exames
+            e as dúvidas para definir, com clareza, quais próximos passos fazem sentido.
           </p>
+        </div>
+
+        <div class="practice-fit reveal" aria-label="Situações em que uma avaliação pode ajudar">
+          <p>Esta avaliação pode ser útil para quem:</p>
+          <ul>
+            <li><span>01</span>Recebeu indicação de cirurgia cardiovascular.</li>
+            <li><span>02</span>Busca uma segunda opinião antes de decidir.</li>
+            <li><span>03</span>Precisa organizar o cuidado pré ou pós-operatório.</li>
+          </ul>
         </div>
 
         <div class="practice-list">
@@ -260,13 +291,29 @@
           <article class="practice-item reveal">
             <span>04</span>
             <div>
-              <h3>Acompanhamento pré e pós-operatório</h3>
-              <p>Orientação clara, planejamento e continuidade do cuidado.</p>
+              <h3>Planejamento pré-operatório</h3>
+              <p>Organização de exames, orientações e etapas antes do procedimento.</p>
+            </div>
+            <i aria-hidden="true">↗</i>
+          </article>
+          <article class="practice-item reveal">
+            <span>05</span>
+            <div>
+              <h3>Acompanhamento pós-operatório</h3>
+              <p>Continuidade do cuidado, recuperação e orientação para o paciente e a família.</p>
             </div>
             <i aria-hidden="true">↗</i>
           </article>
         </div>
-        <p class="validation-note">Áreas de atendimento apresentadas para fins de protótipo e sujeitas à validação médica.</p>
+        <div class="practice-cta reveal">
+          <p>Não sabe se a avaliação é indicada para o seu caso?</p>
+          <a
+            class="button button-light"
+            href="https://wa.me/5527996617730?text=Ol%C3%A1%2C%20gostaria%20de%20entender%20se%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Leandro%20Batisti%20%C3%A9%20indicada%20para%20o%20meu%20caso."
+            target="_blank"
+            rel="noreferrer"
+          ><span class="whatsapp-dot" aria-hidden="true"></span> Conversar sobre meu caso</a>
+        </div>
       </section>
 
       <section class="care-sequence" id="experiencia-cuidado" data-care-sequence aria-labelledby="care-sequence-title">
@@ -370,7 +417,16 @@
         <div class="section-kicker reveal"><span>04</span> Histórias de cuidado</div>
         <div class="testimonials-heading reveal">
           <h2 id="testimonials-title">Confiança construída<br /><em>em cada história.</em></h2>
-          <p>Relatos publicados no site atual. Uso definitivo sujeito à autorização e revisão ética.</p>
+          <p>Histórias que mostram a importância da clareza, da presença e do cuidado ao longo da jornada.</p>
+        </div>
+
+        <div class="testimonial-controls" aria-label="Controles dos depoimentos">
+          <span>Deslize para conhecer outras histórias</span>
+          <div>
+            <button type="button" data-testimonial-prev aria-label="Depoimento anterior">←</button>
+            <p aria-live="polite"><strong data-testimonial-current>01</strong> / 03</p>
+            <button type="button" data-testimonial-next aria-label="Próximo depoimento">→</button>
+          </div>
         </div>
 
         <div class="testimonial-rail">
@@ -482,6 +538,10 @@
             <summary>Posso solicitar uma segunda opinião?<span aria-hidden="true">+</span></summary>
             <p>Sim. Entre em contato com a equipe e informe que deseja uma avaliação especializada do seu caso.</p>
           </details>
+          <details>
+            <summary>O atendimento é particular ou por convênio?<span aria-hidden="true">+</span></summary>
+            <p>As modalidades podem variar conforme a unidade e o tipo de avaliação. A equipe confirma as opções disponíveis antes do agendamento.</p>
+          </details>
         </div>
       </section>
 
@@ -514,7 +574,7 @@
         <span>Cirurgia Cardiovascular: RQE 11.811</span>
       </div>
       <div class="footer-meta">
-        <span>Protótipo</span>
+        <span>Atendimento em Cariacica e Vila Velha · ES</span>
         <a href="#inicio">Voltar ao início ↑</a>
       </div>
     </footer>
