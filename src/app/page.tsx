@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { DOCTOR, LOCATIONS, SITE_URL, whatsappUrl } from "@/lib/site";
 import certificateImage from "../../public/images/certificado-cirurgia-hq.webp";
 import hospitalImage from "../../public/images/hospital-ufes-hq.webp";
+import logoImage from "../../public/images/logo-leandro.webp";
 import portraitImage from "../../public/images/dr-leandro-portrait.webp";
 
 const services = [
@@ -495,7 +496,7 @@ function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-grid section-width">
         <div className="footer-brand">
-          <Image src="/images/logo-leandro.webp" alt="" width={52} height={52} sizes="52px" />
+          <Image src={logoImage} alt="" width={52} height={52} sizes="52px" />
           <div>
             <strong>{DOCTOR.shortName}</strong>
             <span>{DOCTOR.specialty}</span>

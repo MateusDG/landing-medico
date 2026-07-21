@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AccessibilityTools } from "@/components/AccessibilityTools";
 import { whatsappUrl } from "@/lib/site";
+import logoImage from "../../public/images/logo-leandro.webp";
 
 const navigation = [
   { label: "Consultas", href: "#atuacao" },
@@ -35,7 +36,7 @@ export function SiteHeader() {
         <Link className="brand" href="#inicio" aria-label="Dr. Leandro Batisti — início">
           <span className="brand-mark" aria-hidden="true">
             <Image
-              src="/images/logo-leandro.webp"
+              src={logoImage}
               alt=""
               width={48}
               height={48}

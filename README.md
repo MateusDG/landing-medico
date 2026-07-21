@@ -25,8 +25,21 @@ Abra [http://localhost:3000](http://localhost:3000).
 npm run lint
 npx tsc --noEmit --incremental false
 npm run build
-npm run start
 ```
+
+O build estático é gerado em `out/`.
+
+## GitHub Pages
+
+Pushes para a branch `main` publicam automaticamente o site em:
+
+```text
+https://mateusdg.github.io/landing-medico/
+```
+
+No GitHub, selecione **Settings → Pages → Build and deployment → GitHub
+Actions**. O workflow `.github/workflows/deploy-pages.yml` configura o caminho
+`/landing-medico`, gera a exportação estática e publica a pasta `out/`.
 
 ## Configuração
 
