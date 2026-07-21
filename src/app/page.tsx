@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileWhatsAppCta } from "@/components/MobileWhatsAppCta";
 import { SiteHeader } from "@/components/SiteHeader";
 import { DOCTOR, LOCATIONS, SITE_URL, whatsappUrl } from "@/lib/site";
 import certificateImage from "../../public/images/certificado-cirurgia-hq.webp";
@@ -405,16 +406,7 @@ export default function Home() {
 
       <SiteFooter />
 
-      <a
-        className="mobile-whatsapp"
-        href={whatsappUrl()}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Solicitar agendamento pelo WhatsApp; abre em nova aba"
-      >
-        <WhatsAppIcon />
-        Solicitar agendamento
-      </a>
+      <MobileWhatsAppCta href={whatsappUrl()} />
     </>
   );
 }
@@ -424,7 +416,10 @@ function HeroSection() {
     <section className="hero" id="inicio" aria-labelledby="hero-title">
       <div className="hero-grid section-width">
         <div className="hero-copy reveal">
-          <p className="eyebrow">Dr. Leandro Batisti · CRM-ES 9.973 · RQE 11.811</p>
+          <p className="eyebrow">
+            <span className="hero-eyebrow-name">Dr. Leandro Batisti · </span>
+            <span>CRM-ES 9.973 · RQE 11.811</span>
+          </p>
           <h1 id="hero-title">Cirurgião cardiovascular no Espírito Santo</h1>
           <p className="hero-lede">
             Avaliação de indicação cirúrgica, segunda opinião e acompanhamento antes e depois da
@@ -565,15 +560,6 @@ function HeartIcon() {
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M20.8 5.7a5.4 5.4 0 0 0-7.7 0L12 6.8l-1.1-1.1a5.4 5.4 0 0 0-7.7 7.7L12 22l8.8-8.6a5.4 5.4 0 0 0 0-7.7Z" />
       <path d="M3.8 12h4l1.4-3.2 2.3 6.1 1.8-4 1 1.1h5.8" />
-    </svg>
-  );
-}
-
-function WhatsAppIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4.1Z" />
-      <path d="M8.3 7.8c.2-.4.4-.4.7-.4h.4c.2 0 .4.1.5.5l.7 1.7c.1.3 0 .5-.1.7l-.6.7c-.2.2-.1.4 0 .6.5.9 1.2 1.7 2.1 2.2.3.2.5.2.7 0l.8-1c.2-.2.4-.3.7-.2l1.8.8c.3.2.5.3.5.5 0 .2-.2 1.4-.8 1.9-.6.5-1.3.7-2.1.5-1.1-.3-2.7-1-4.2-2.3-1.2-1.1-2-2.4-2.3-3.4-.3-.8 0-1.9.4-2.5l.8-.3Z" />
     </svg>
   );
 }
