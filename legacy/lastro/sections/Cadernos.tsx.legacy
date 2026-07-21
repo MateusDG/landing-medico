@@ -1,0 +1,88 @@
+"use client";
+
+import { Reveal } from "../kit";
+import { SectionShell } from "../SectionShell";
+import { ArteAB, ArteLeilao, ArteFluxo, ArteEnvelope, ArtePregao } from "../art";
+
+const CADERNOS = [
+  {
+    letra: "A",
+    nome: "Página",
+    texto:
+      "Sua landing page nunca fica pronta. Ela fica melhor — um teste A/B novo a cada fechamento.",
+    Arte: ArteAB,
+  },
+  {
+    letra: "B",
+    nome: "Tráfego",
+    texto:
+      "Quem cria o anúncio é quem edita a página. O ciclo completo sob uma única responsabilidade, sem ruído entre agência e desenvolvedor.",
+    Arte: ArteLeilao,
+  },
+  {
+    letra: "C",
+    nome: "WhatsApp",
+    texto:
+      "Uma automação com IA qualifica e agenda enquanto você atende quem já está pronto. Nenhum contato fica sem resposta. Conversas delicadas são transferidas para atendimento humano, com critérios definidos em conjunto com você.",
+    Arte: ArteFluxo,
+  },
+  {
+    letra: "D",
+    nome: "Correio",
+    texto:
+      "Quem não comprou hoje recebe um motivo para voltar amanhã — sequências de e-mail objetivas, escritas para quem tem pouco tempo.",
+    Arte: ArteEnvelope,
+  },
+  {
+    letra: "E",
+    nome: "Números",
+    texto: "Você não pede relatório. Você abre o painel.",
+    Arte: ArtePregao,
+  },
+];
+
+export function Cadernos() {
+  return (
+    <SectionShell
+      id="cadernos"
+      folio="04"
+      chapeu="Cadernos · as cinco frentes do plano"
+      manchete={
+        <>
+          Cinco frentes, um resultado <em className="em-swash">composto.</em>
+        </>
+      }
+      sub="Nenhuma frente funciona isolada — por isso nenhuma é opcional."
+    >
+      <div className="grid gap-y-2 lg:grid-cols-5 lg:gap-y-0 lg:divide-x lg:divide-tinta/15">
+        {CADERNOS.map((c, i) => (
+          <Reveal key={c.letra} delay={i * 0.08} className="relative">
+            <article className="relative py-8 lg:px-6 lg:py-2 lg:first:pl-0 lg:last:pr-0">
+              {/* Letra-índice gigante atrás do texto (mobile) */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute top-0 right-2 font-display text-[7rem] leading-none font-light italic text-tinta/10 select-none lg:hidden"
+              >
+                {c.letra}
+              </span>
+
+              <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-tinta/60">
+                Caderno {c.letra}
+              </p>
+              <h3 className="manchete mt-2 text-3xl lg:text-[1.75rem]">
+                {c.nome}
+              </h3>
+              <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-tinta/85">
+                {c.texto}
+              </p>
+              <div className="mt-6 text-tinta/70">
+                <c.Arte />
+              </div>
+              <div className="mt-8 h-px bg-tinta/15 lg:hidden" aria-hidden />
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}

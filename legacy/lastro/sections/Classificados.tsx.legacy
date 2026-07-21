@@ -1,0 +1,93 @@
+"use client";
+
+import { Reveal, useAno } from "../kit";
+import { SectionShell } from "../SectionShell";
+import { waLink, BRAND } from "@/lib/site";
+
+const ANUNCIOS = [
+  {
+    titulo: "Procura-se",
+    texto:
+      "Contrato de fidelidade. Não há — a assinatura se renova pelo resultado, não pela multa.",
+  },
+  {
+    titulo: "Vende-se",
+    texto: "Relatório de 40 páginas. Vendido. Ficou o painel.",
+  },
+  {
+    titulo: "Achado",
+    texto: "Contato esquecido no WhatsApp. Recuperado pela automação.",
+  },
+  {
+    titulo: "Precisa-se",
+    texto:
+      "Paciência com o 1º mês — melhorias na página começam na primeira semana, mas uma leitura honesta de tráfego exige de 30 a 60 dias. Quem promete menos está vendendo outra coisa.",
+  },
+  {
+    titulo: "Atende-se",
+    texto:
+      "Clínicas, advogados, restaurantes, e-commerce e infoprodutos. Se o seu caso não se encaixar, eu aviso na primeira conversa — mesmo que a resposta seja: ainda não é o momento.",
+  },
+  {
+    titulo: "Pede-se",
+    texto:
+      "Verba mínima de mídia a partir de R$ 30/dia, paga por você diretamente à plataforma.",
+  },
+];
+
+export function Classificados() {
+  const ano = useAno();
+
+  return (
+    <SectionShell
+      id="classificados"
+      folio="09"
+      chapeu="Classificados · as últimas dúvidas"
+      manchete={
+        <>
+          Tudo publicado, nada em <em className="em-swash">letra miúda.</em>
+        </>
+      }
+      sub="Sempre abertos — resposta escondida atrás de um clique não é prestação de contas."
+    >
+      {/* Grade de classificados (columns: cada caixa é autônoma) */}
+      <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
+        {ANUNCIOS.map((a, i) => (
+          <Reveal key={a.titulo} delay={i * 0.05} className="mb-6 break-inside-avoid">
+            <article className="border border-tinta/15 p-5">
+              <h3 className="font-mono text-[11px] tracking-[0.16em] uppercase">
+                {a.titulo}:
+              </h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-tinta/85">
+                {a.texto}
+              </p>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Colofão */}
+      <footer className="mt-16 pb-20 md:pb-4">
+        <div className="oxford" aria-hidden />
+        <div className="space-y-4 py-8 text-center">
+          <p className="font-mono text-[10px] leading-relaxed tracking-[0.12em] uppercase text-tinta/60">
+            {BRAND} · Composto em Fraunces &amp; Schibsted Grotesk · Publicado
+            em Next.js · Edição nº 001 ·{" "}
+            <span suppressHydrationWarning>{ano ?? "————"}</span> · Impresso em
+            pixels 100% recicláveis
+          </p>
+          <p>
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-ink inline-block px-3 py-2.5 -my-2.5 text-base font-medium"
+            >
+              Falar com a redação no WhatsApp →
+            </a>
+          </p>
+        </div>
+      </footer>
+    </SectionShell>
+  );
+}

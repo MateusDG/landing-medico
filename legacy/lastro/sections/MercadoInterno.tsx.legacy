@@ -1,0 +1,123 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "motion/react";
+import { CountUp, Reveal, Sparkline } from "../kit";
+import { SectionShell } from "../SectionShell";
+
+type Indicador = {
+  label: string;
+  arrow: "▲" | "▼";
+  to: number;
+  format: (v: number) => string;
+  def: string;
+  points: number[];
+};
+
+const INDICADORES: Indicador[] = [
+  {
+    label: "Custo por lead",
+    arrow: "▼",
+    to: 18,
+    format: (v) => `R$ ${Math.round(v)}`,
+    def: "Quanto cada conversa nova custou — o número que decide se o anúncio continua ou muda.",
+    points: [41, 38, 34, 30, 26, 22, 19, 18],
+  },
+  {
+    label: "Conversão da página",
+    arrow: "▲",
+    to: 5.3,
+    format: (v) => `${v.toFixed(1).replace(".", ",")}%`,
+    def: "De cada 100 visitas, quantas se tornam conversas — o resultado do teste A/B contínuo.",
+    points: [2.1, 2.4, 2.9, 3.3, 3.9, 4.5, 5.0, 5.3],
+  },
+  {
+    label: "Tempo de 1ª resposta",
+    arrow: "▼",
+    to: 3,
+    format: (v) => `${Math.max(1, Math.round(v))} min`,
+    def: "Quanto o interessado aguarda pela primeira resposta — a automação mantém essa espera em minutos. Meta: 3.",
+    points: [45, 32, 21, 13, 8, 5, 3, 3],
+  },
+  {
+    label: "Leads qualificados pela IA",
+    arrow: "▲",
+    to: 128,
+    format: (v) => `${Math.round(v)}`,
+    def: "Conversas qualificadas e agendadas por mês, sem ocupar o seu atendimento.",
+    points: [12, 25, 41, 58, 77, 96, 112, 128],
+  },
+];
+
+function LinhaIndicador({ ind, delay }: { ind: Indicador; delay: number }) {
+  const [done, setDone] = useState(false);
+  return (
+    <Reveal delay={delay}>
+      <div className="group grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 border-b border-tinta/15 px-2 py-6 transition-colors duration-150 hover:bg-tinta hover:text-papel md:grid-cols-[minmax(0,1.2fr)_auto_minmax(120px,0.6fr)] md:px-4">
+        <div>
+          <p className="chapeu">
+            {ind.label}{" "}
+            <motion.span
+              className="inline-block text-pregao group-hover:text-papel"
+              animate={done ? { y: [0, -4, 0] } : {}}
+              transition={{ duration: 0.35 }}
+              aria-hidden
+            >
+              {ind.arrow}
+            </motion.span>
+            <span className="sr-only">
+              {ind.arrow === "▲" ? "em alta" : "em queda"}
+            </span>
+          </p>
+          <p className="mt-2 max-w-[52ch] text-sm leading-relaxed text-tinta/70 group-hover:text-papel/70">
+            {ind.def}
+          </p>
+        </div>
+        <p className="num-hero text-right text-[clamp(2.5rem,6vw,4.5rem)]">
+          <CountUp to={ind.to} format={ind.format} onDone={() => setDone(true)} />
+        </p>
+        <div className="col-span-2 text-tinta/50 group-hover:text-papel/60 md:col-span-1">
+          <Sparkline
+            points={ind.points}
+            className="h-8 w-full"
+            delay={0.25 + delay}
+          />
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+export function MercadoInterno() {
+  return (
+    <SectionShell
+      id="mercado-interno"
+      folio="05"
+      chapeu="Mercado interno"
+      manchete={
+        <>
+          Os números que passam a <em className="em-swash">existir</em> no seu
+          negócio.
+        </>
+      }
+    >
+      <div>
+        {INDICADORES.map((ind, i) => (
+          <LinhaIndicador key={ind.label} ind={ind} delay={i * 0.12} />
+        ))}
+      </div>
+
+      <p className="mt-6 font-mono text-[10px] tracking-[0.12em] uppercase text-tinta/60">
+        Valores ilustrativos do modelo de painel — os seus terão o seu nome em
+        cima.
+      </p>
+
+      <Reveal delay={0.1}>
+        <p className="mt-10 max-w-[62ch] text-lg leading-relaxed">
+          Publicados no seu painel e atualizados diariamente — não em uma
+          reunião por trimestre.
+        </p>
+      </Reveal>
+    </SectionShell>
+  );
+}

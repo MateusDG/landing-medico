@@ -1,0 +1,62 @@
+"use client";
+
+import { Reveal } from "../kit";
+import { SectionShell } from "../SectionShell";
+
+const ENTRADAS = [
+  { num: "03", href: "#errata", titulo: "Errata", sub: "o que as agências prometeram" },
+  { num: "04", href: "#cadernos", titulo: "Cadernos", sub: "as cinco frentes do plano" },
+  { num: "05", href: "#mercado-interno", titulo: "Mercado interno", sub: "o que você passa a medir" },
+  { num: "06", href: "#fechamento", titulo: "O fechamento", sub: "o que acontece todo mês" },
+  { num: "07", href: "#expediente", titulo: "Expediente", sub: "quem assina" },
+  { num: "08", href: "#assinatura", titulo: "Assinatura", sub: "preço e vaga do mês" },
+  { num: "09", href: "#classificados", titulo: "Classificados", sub: "as últimas dúvidas" },
+];
+
+export function Indice() {
+  return (
+    <SectionShell
+      id="indice"
+      folio="02"
+      chapeu="Nesta edição"
+      manchete={
+        <>
+          Leia na ordem que <em className="em-swash">preferir.</em>
+        </>
+      }
+      sub="Cada número abaixo é um atalho de leitura — inclusive direto ao preço."
+    >
+      <nav aria-label="Índice da edição">
+        <ol className="lg:columns-2 lg:gap-16 [column-rule:1px_solid_color-mix(in_srgb,var(--tinta)_15%,transparent)]">
+          {ENTRADAS.map((e, i) => (
+            <li key={e.num} className="break-inside-avoid">
+              <Reveal delay={i * 0.05}>
+                <a
+                  href={e.href}
+                  className="group flex min-h-14 items-baseline gap-3 border-b border-tinta/15 py-4"
+                >
+                  <span className="font-mono text-sm text-tinta/60">
+                    {e.num}
+                  </span>
+                  <span className="text-lg font-medium transition-transform duration-200 group-hover:translate-x-2">
+                    {e.titulo}
+                  </span>
+                  <span className="hidden text-sm text-tinta/60 sm:inline">
+                    — {e.sub}
+                  </span>
+                  <span className="leader min-w-6 flex-1 self-stretch" aria-hidden />
+                  <span className="font-mono text-sm text-tinta/60">
+                    <span className="mr-2 inline-block opacity-0 transition-all duration-200 group-hover:mr-0 group-hover:opacity-100">
+                      →
+                    </span>
+                    p.{e.num}
+                  </span>
+                </a>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </SectionShell>
+  );
+}

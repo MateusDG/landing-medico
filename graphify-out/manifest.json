@@ -1,0 +1,107 @@
+{
+  ".claude/launch.json": {
+    "mtime": 1784496836.717239,
+    "ast_hash": "324e6b71dd229c0be524d38777fc7344",
+    "semantic_hash": "324e6b71dd229c0be524d38777fc7344"
+  },
+  "eslint.config.mjs": {
+    "mtime": 1784495660.358013,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "next.config.ts": {
+    "mtime": 1784661424.5396607,
+    "ast_hash": "520aa0f4f132b3791b48484261f32e1d",
+    "semantic_hash": "520aa0f4f132b3791b48484261f32e1d"
+  },
+  "package.json": {
+    "mtime": 1784662084.4043007,
+    "ast_hash": "533cfaec98239736dc9a375cde7c5d9e",
+    "semantic_hash": "533cfaec98239736dc9a375cde7c5d9e"
+  },
+  "src/app/layout.tsx": {
+    "mtime": 1784660946.4065778,
+    "ast_hash": "7f0adbbaab1a638064e15da512141bf2",
+    "semantic_hash": "7f0adbbaab1a638064e15da512141bf2"
+  },
+  "src/app/manifest.ts": {
+    "mtime": 1784661391.5149999,
+    "ast_hash": "ed0dec29830e20e7bbaefae3e75abaf0",
+    "semantic_hash": "ed0dec29830e20e7bbaefae3e75abaf0"
+  },
+  "src/app/page.tsx": {
+    "mtime": 1784661904.67062,
+    "ast_hash": "1aa1c61e57b341de594674e5b7994cc4",
+    "semantic_hash": "1aa1c61e57b341de594674e5b7994cc4"
+  },
+  "src/app/privacidade/page.tsx": {
+    "mtime": 1784661391.5160058,
+    "ast_hash": "bdd1e25304e1eab0eeb457f62297c7fd",
+    "semantic_hash": "bdd1e25304e1eab0eeb457f62297c7fd"
+  },
+  "src/app/robots.ts": {
+    "mtime": 1784661391.512031,
+    "ast_hash": "a8830d504e60906036671ac4951d0aea",
+    "semantic_hash": "a8830d504e60906036671ac4951d0aea"
+  },
+  "src/app/sitemap.ts": {
+    "mtime": 1784661391.512031,
+    "ast_hash": "4db7dc5f866e3532c964b43a6c55fbd8",
+    "semantic_hash": "4db7dc5f866e3532c964b43a6c55fbd8"
+  },
+  "src/components/SiteHeader.tsx": {
+    "mtime": 1784660925.737163,
+    "ast_hash": "83d837b6a41c89f2791285ccdb6feb0a",
+    "semantic_hash": "83d837b6a41c89f2791285ccdb6feb0a"
+  },
+  "src/lib/site.ts": {
+    "mtime": 1784661944.4414942,
+    "ast_hash": "08daa3ca982796df5f1f58c883b75461",
+    "semantic_hash": "08daa3ca982796df5f1f58c883b75461"
+  },
+  "tsconfig.json": {
+    "mtime": 1784495660.7463715,
+    "ast_hash": "ee17fd1c97c735e9f3564e3f5251f125",
+    "semantic_hash": "ee17fd1c97c735e9f3564e3f5251f125"
+  },
+  "AGENTS.md": {
+    "mtime": 1784495699.1615121,
+    "ast_hash": "9e09241799026ac05be315a2f0b50055",
+    "semantic_hash": "9e09241799026ac05be315a2f0b50055"
+  },
+  "CLAUDE.md": {
+    "mtime": 1784495699.1615121,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "README.md": {
+    "mtime": 1784661438.887985,
+    "ast_hash": "f9b35beb961d12c3c8899df4806fd1bd",
+    "semantic_hash": "f9b35beb961d12c3c8899df4806fd1bd"
+  },
+  "public/images/certificado-cirurgia.webp": {
+    "mtime": 1784660651.2204905,
+    "ast_hash": "488890a08ce8b9fd84f50e2788827608",
+    "semantic_hash": "488890a08ce8b9fd84f50e2788827608"
+  },
+  "public/images/dr-leandro-portrait.webp": {
+    "mtime": 1784660651.212329,
+    "ast_hash": "deb462f3a55de23b887c84536d8305e1",
+    "semantic_hash": "deb462f3a55de23b887c84536d8305e1"
+  },
+  "public/images/hospital-ufes.webp": {
+    "mtime": 1784660651.2204905,
+    "ast_hash": "af72518ff17b3dd56fb5c03566c00494",
+    "semantic_hash": "af72518ff17b3dd56fb5c03566c00494"
+  },
+  "public/images/logo-leandro.webp": {
+    "mtime": 1784660651.2181964,
+    "ast_hash": "3cd2cb1e8719db1ee075aef01356b679",
+    "semantic_hash": "3cd2cb1e8719db1ee075aef01356b679"
+  },
+  "src/app/icon.svg": {
+    "mtime": 1784661391.5180097,
+    "ast_hash": "3ac3cc81f5f3e9eac434be93ded1a66d",
+    "semantic_hash": "3ac3cc81f5f3e9eac434be93ded1a66d"
+  }
+}

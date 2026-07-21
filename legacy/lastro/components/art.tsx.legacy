@@ -1,0 +1,159 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import { EASE } from "./kit";
+
+/** Path monolinha que se desenha ao entrar em view. */
+function Draw({
+  d,
+  delay = 0,
+  ...rest
+}: { d: string; delay?: number } & React.ComponentProps<typeof motion.path>) {
+  const reduce = useReducedMotion();
+  return (
+    <motion.path
+      d={d}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1}
+      vectorEffect="non-scaling-stroke"
+      initial={{ pathLength: reduce ? 1 : 0 }}
+      whileInView={{ pathLength: 1 }}
+      viewport={{ once: true, margin: "-10% 0px" }}
+      transition={reduce ? { duration: 0 } : { duration: 1, delay, ease: EASE }}
+      {...rest}
+    />
+  );
+}
+
+/* Caderno A — dois wireframes lado a lado (teste A/B) */
+export function ArteAB() {
+  return (
+    <svg viewBox="0 0 120 72" className="h-16 w-auto" aria-hidden>
+      <Draw d="M4,8 h48 v56 h-48 Z" />
+      <Draw d="M10,18 h36 M10,26 h28 M10,40 h36 M10,48 h20" delay={0.2} />
+      <Draw d="M68,8 h48 v56 h-48 Z" delay={0.1} />
+      <Draw d="M74,18 h36 M74,26 h36 M74,40 h24" delay={0.3} />
+      <Draw d="M74,50 h20 v8 h-20 Z" delay={0.4} />
+      <text x="28" y="72" fontSize="7" fontFamily="var(--font-fragment)" fill="currentColor" textAnchor="middle">A</text>
+      <text x="92" y="72" fontSize="7" fontFamily="var(--font-fragment)" fill="currentColor" textAnchor="middle">B</text>
+    </svg>
+  );
+}
+
+/* Caderno B — seta de leilão subindo em degraus */
+export function ArteLeilao() {
+  return (
+    <svg viewBox="0 0 120 72" className="h-16 w-auto" aria-hidden>
+      <Draw d="M6,64 h22 v-14 h22 v-14 h22 v-14 h22 v-14" />
+      <Draw d="M86,16 h8 v8" delay={0.6} />
+      <Draw d="M6,68 h108" delay={0.2} />
+    </svg>
+  );
+}
+
+/* Caderno C — fluxo LEAD → QUALIFICA → AGENDA */
+export function ArteFluxo() {
+  return (
+    <svg viewBox="0 0 200 44" className="h-11 w-auto max-w-full" aria-hidden>
+      <Draw d="M2,10 h44 v24 h-44 Z" />
+      <Draw d="M50,22 h18 M64,18 l4,4 l-4,4" delay={0.2} />
+      <Draw d="M72,10 h62 v24 h-62 Z" delay={0.3} />
+      <Draw d="M138,22 h18 M152,18 l4,4 l-4,4" delay={0.5} />
+      <Draw d="M160,10 h38 v24 h-38 Z" delay={0.6} />
+      <text x="24" y="25.5" fontSize="7.5" fontFamily="var(--font-fragment)" fill="currentColor" textAnchor="middle">LEAD</text>
+      <text x="103" y="25.5" fontSize="7.5" fontFamily="var(--font-fragment)" fill="currentColor" textAnchor="middle">QUALIFICA</text>
+      <text x="179" y="25.5" fontSize="7.5" fontFamily="var(--font-fragment)" fill="currentColor" textAnchor="middle">AGENDA</text>
+    </svg>
+  );
+}
+
+/* Caderno D — envelope */
+export function ArteEnvelope() {
+  return (
+    <svg viewBox="0 0 120 72" className="h-16 w-auto" aria-hidden>
+      <Draw d="M14,12 h92 v48 h-92 Z" />
+      <Draw d="M14,12 L60,44 L106,12" delay={0.3} />
+    </svg>
+  );
+}
+
+/* Caderno E — mini tabela de pregão com linha subindo */
+export function ArtePregao() {
+  return (
+    <svg viewBox="0 0 120 72" className="h-16 w-auto" aria-hidden>
+      <Draw d="M6,14 h108 M6,34 h108 M6,54 h108" />
+      <Draw d="M10,50 L34,44 L58,46 L82,30 L106,20" delay={0.4} />
+      <Draw d="M100,20 h6 v6" delay={1} />
+    </svg>
+  );
+}
+
+/* Código de barras da capa — "esta edição é gratuita" */
+export function CodigoDeBarras() {
+  const barras = [
+    2, 1, 3, 1, 1, 2, 4, 1, 2, 1, 1, 3, 2, 1, 4, 1, 1, 2, 1, 3, 1, 2, 2, 1, 3,
+    1, 1, 4, 2, 1, 1, 2, 3, 1, 2, 1,
+  ];
+  let x = 0;
+  return (
+    <svg viewBox="0 0 110 32" className="h-10 w-auto" aria-hidden>
+      {barras.map((w, i) => {
+        const bar = <rect key={i} x={x} y={0} width={w} height={26} fill="currentColor" />;
+        x += w + 1.2;
+        return bar;
+      })}
+      <text
+        x={x / 2}
+        y={32}
+        fontSize="5"
+        fontFamily="var(--font-fragment)"
+        fill="currentColor"
+        textAnchor="middle"
+      >
+        0 000001 000000
+      </text>
+    </svg>
+  );
+}
+
+/* Tesoura do cupom de assinatura */
+export function Tesoura() {
+  return (
+    <svg viewBox="0 0 32 20" className="h-5 w-auto" aria-hidden>
+      <circle cx="5" cy="5" r="3.2" fill="none" stroke="currentColor" strokeWidth="1" />
+      <circle cx="5" cy="15" r="3.2" fill="none" stroke="currentColor" strokeWidth="1" />
+      <path d="M8,6.5 L28,13 M8,13.5 L28,7" fill="none" stroke="currentColor" strokeWidth="1" />
+    </svg>
+  );
+}
+
+/* Seta curva de retorno — "o ciclo recomeça" */
+export function SetaCiclo() {
+  return (
+    <svg viewBox="0 0 120 40" className="h-9 w-auto" aria-hidden>
+      <Draw d="M112,8 C112,30 8,30 10,16" />
+      <Draw d="M6,22 l4,-6 l6,3" delay={0.8} />
+    </svg>
+  );
+}
+
+/* Monograma do expediente — inicial em círculo de filete 1px */
+export function Monograma({ inicial }: { inicial: string }) {
+  return (
+    <svg viewBox="0 0 88 88" className="h-20 w-20" aria-hidden>
+      <circle cx="44" cy="44" r="42" fill="none" stroke="currentColor" strokeWidth="1" />
+      <text
+        x="44"
+        y="58"
+        fontSize="40"
+        fontFamily="var(--font-fraunces)"
+        fontWeight="900"
+        textAnchor="middle"
+        fill="currentColor"
+      >
+        {inicial}.
+      </text>
+    </svg>
+  );
+}

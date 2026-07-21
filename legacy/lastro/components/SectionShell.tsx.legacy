@@ -1,0 +1,67 @@
+"use client";
+
+import { Reveal } from "./kit";
+
+/**
+ * Esqueleto editorial de toda seção interna:
+ * filete duplo (Oxford) no topo, fólio gigante sticky na margem
+ * esquerda (desktop) ou cabeço de seção (mobile), chapéu,
+ * manchete e subtítulo em português claro.
+ */
+export function SectionShell({
+  id,
+  folio,
+  chapeu,
+  manchete,
+  sub,
+  children,
+}: {
+  id: string;
+  folio: string;
+  chapeu: string;
+  manchete: React.ReactNode;
+  sub?: string;
+  children: React.ReactNode;
+}) {
+  const headingId = `${id}-titulo`;
+  return (
+    <section id={id} aria-labelledby={headingId} className="scroll-mt-4">
+      <div className="oxford" aria-hidden />
+      <div className="xl:grid xl:grid-cols-[88px_1fr]">
+        {/* Fólio sticky — índice vivo durante o scroll (desktop) */}
+        <div className="hidden xl:block border-r border-tinta/15" aria-hidden>
+          <div className="sticky top-10 pt-10 pr-4 text-right font-mono text-[clamp(2rem,3vw,3.5rem)] leading-none text-tinta/20 select-none">
+            {folio}
+          </div>
+        </div>
+
+        <div className="px-5 py-14 md:px-10 md:py-20">
+          <Reveal>
+            <header className="mb-10 md:mb-14">
+              {/* Fólio mobile: cabeço de seção acima do filete */}
+              <div className="mb-3 flex items-baseline gap-3 xl:hidden" aria-hidden>
+                <span className="font-mono text-2xl leading-none text-tinta/25">
+                  {folio}
+                </span>
+                <span className="h-px flex-1 bg-tinta/15" aria-hidden />
+              </div>
+              <p className="chapeu mb-4 font-sans text-tinta/70">{chapeu}</p>
+              <h2
+                id={headingId}
+                className="manchete relative z-10 text-[clamp(2.2rem,5.5vw,4.5rem)]"
+              >
+                {manchete}
+              </h2>
+              {sub && (
+                <p className="mt-4 max-w-[62ch] text-[17px] leading-relaxed text-tinta/70">
+                  {sub}
+                </p>
+              )}
+            </header>
+          </Reveal>
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,66 @@
+"use client";
+
+import { Reveal } from "../kit";
+import { SectionShell } from "../SectionShell";
+import { Monograma } from "../art";
+import { EDITOR_NAME, EDITOR_INICIAL } from "@/lib/site";
+
+export function Expediente() {
+  return (
+    <SectionShell
+      id="expediente"
+      folio="07"
+      chapeu="Expediente · quem assina"
+      manchete={
+        <>
+          Uma redação de <em className="em-swash">um homem só.</em>
+        </>
+      }
+    >
+      <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
+        {/* Caixa de expediente clássica */}
+        <Reveal>
+          <div className="space-y-6">
+            <div className="text-tinta">
+              <Monograma inicial={EDITOR_INICIAL} />
+            </div>
+            <div>
+              <div className="oxford" aria-hidden />
+              <p className="py-4 font-mono text-[11px] leading-relaxed tracking-[0.06em] uppercase">
+                Expediente — Redação, tráfego, código e dados:{" "}
+                <span className="text-tinta">{EDITOR_NAME}</span>. Programador
+                de formação. Responde em horas, não em semanas.
+              </p>
+              <div className="h-px bg-tinta/40" aria-hidden />
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Coluna do editor — primeira pessoa */}
+        <Reveal delay={0.1}>
+          <div className="max-w-[62ch] space-y-6 text-[17px] leading-[1.7] md:text-lg">
+            <p className="capitular">
+              Sou programador antes de ser publicitário — eu mesmo construo a
+              página, escrevo os e-mails, configuro a automação e analiso os
+              dados. Sem repasses, sem equipes intermediárias.
+            </p>
+            <p>
+              Quem escreve o anúncio é quem edita a página; quem edita a página
+              é quem lê o dado. Se algo falhar às 22h de uma terça-feira,{" "}
+              <em className="em-swash">é o meu telefone que toca</em> — o mesmo
+              WhatsApp que o seu cliente usa.
+            </p>
+            <p>
+              E por ser uma redação de um homem só, o número de assinantes é
+              limitado por <em className="em-swash">capacidade real</em> — não
+              por estratégia de urgência.
+            </p>
+            <p className="em-swash pt-2 text-xl">
+              — {EDITOR_NAME}, editor responsável
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </SectionShell>
+  );
+}

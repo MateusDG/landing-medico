@@ -1,57 +1,83 @@
-# Protótipo — Dr. Leandro Batisti
+# Landing page — Dr. Leandro Batisti
 
-Landing page conceitual criada a partir do conteúdo público do site atual do médico.
+Landing page institucional para o Dr. Leandro Batisti de Faria, médico com atuação em cirurgia cardiovascular no Espírito Santo.
 
-## Visualização local
+## Stack
 
-Na pasta do projeto, execute:
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- CSS responsivo sem dependência de JavaScript para o conteúdo principal
+- `next/image` e `next/font` para otimização de imagens e fontes
 
-```powershell
-python -m http.server 4173
+## Desenvolvimento
+
+```bash
+npm ci
+npm run dev
 ```
 
-Depois acesse `http://127.0.0.1:4173/`.
+Abra [http://localhost:3000](http://localhost:3000).
 
-## Arquivos
+## Verificações antes de publicar
 
-- `index.html`: estrutura e conteúdo da landing page.
-- `styles.css`: direção visual, responsividade e animações.
-- `script.js`: menu mobile, progresso de leitura, FAQ e sistema de animações vinculado ao scroll.
+```bash
+npm run lint
+npx tsc --noEmit --incremental false
+npm run build
+npm run start
+```
 
-## Sistema de movimento
+## Configuração
 
-- Hero com parallax sutil.
-- Colagem editorial `sticky` com imagens flutuantes e três palavras sincronizadas ao scroll.
-- Faixa tipográfica cinética em loop.
-- Sequência narrativa com quatro cenas e navegação por etapas no desktop e no mobile.
-- Composição mobile própria para telas altas e compactas, com amplitudes, enquadramentos e áreas seguras adaptadas.
-- Cursor personalizado apenas em dispositivos com ponteiro preciso.
-- Fallback completo para `prefers-reduced-motion`.
+Os dados centrais ficam em `src/lib/site.ts`:
 
-As animações usam apenas CSS transforms, `requestAnimationFrame` e `IntersectionObserver`, sem bibliotecas externas de motion.
+- URL canônica
+- identificação profissional
+- WhatsApp e mensagem inicial
+- unidades e rotas
 
-## Otimizações aplicadas
+O domínio padrão é `https://leandrobatisti.com.br`. Em ambientes de homologação, defina:
 
-- Geometria das sequências calculada fora do loop de scroll e recalculada somente quando o layout muda.
-- Um único `requestAnimationFrame` coordena progresso, cenas e parallax.
-- Seções fora da área próxima à tela deixam de receber atualizações visuais.
-- `will-change` é ativado apenas enquanto cada sequência está próxima da viewport.
-- Imagens abaixo da dobra usam carregamento lazy e decodificação assíncrona.
-- Barra de progresso usa `transform`, evitando recálculo de layout por alteração de largura.
-- Parallax e cursor pesado são desativados em dispositivos touch.
+```bash
+NEXT_PUBLIC_SITE_URL=https://seu-dominio-de-homologacao.com
+```
 
-## Decisões de UX e conversão
+## SEO e produção
 
-- Informações essenciais — CRM, RQE, formação, segunda opinião e unidades — aparecem antes da primeira animação.
-- O mobile apresenta retrato, nome e especialidade do médico acima da dobra.
-- O CTA fixo mobile só aparece depois que o bloco inicial de decisão foi ultrapassado e é ocultado durante o menu.
-- O menu mobile funciona como drawer com fundo de proteção, CTA próprio, fechamento por `Esc` e controle de foco.
-- A seção de atuação explica para quem a avaliação pode ser útil e oferece um CTA contextual.
-- Depoimentos no mobile possuem instrução, contador e controles anterior/próximo.
-- As sequências sticky foram encurtadas para reduzir o tempo até o conteúdo prático.
+O projeto inclui metadata, canonical, imagem social 1200 × 630, Open Graph, Twitter Card, JSON-LD `Physician`, `robots.txt`, `sitemap.xml`, manifest, favicon e uma política de privacidade. Para produção, use uma hospedagem compatível com Next.js 16, como a Vercel, e aponte o domínio principal após validar a versão publicada.
 
-## Observações do protótipo
+Antes da troca de domínio/hospedagem, preserve ou redirecione individualmente páginas antigas que ainda recebam tráfego. Não faça redirecionamentos genéricos de artigos para a home.
 
-- As imagens são carregadas do site público atual e deverão ser substituídas pelos arquivos originais antes da publicação.
-- Números, áreas de atendimento, textos, CRM, RQE, endereços e depoimentos devem ser validados pelo médico.
-- O protótipo inclui `noindex, nofollow` e não deve ser publicado como versão definitiva sem a revisão de conteúdo, privacidade e publicidade médica.
+Depois da publicação, valide o domínio no Google Search Console, envie o sitemap e mantenha nome, telefone e endereços coerentes com o Perfil da Empresa no Google.
+
+## Acessibilidade
+
+A página foi estruturada para WCAG 2.2 nível AA, com navegação por teclado, link para pular ao conteúdo, foco visível, alvos de toque amplos, hierarquia semântica e suporte a movimento reduzido. O menu “Acessibilidade” oferece preferências persistentes de texto maior, alto contraste e redução de movimento.
+
+Esses controles complementam — e não substituem — a acessibilidade nativa. Antes do lançamento, faça uma rodada manual com teclado, zoom de 200%, leitor de tela e contraste forçado.
+
+## Imagens e relatos
+
+As imagens do hospital e do certificado foram reconvertidas a partir dos arquivos de maior resolução publicados no domínio anterior. O retrato principal permaneceu autêntico, sem reconstrução facial por IA. Confirme os direitos de uso do retrato, do certificado e da fotografia institucional antes do lançamento.
+
+A seção de relatos usa dois trechos sóbrios já publicados no site anterior, sem nome, fotografia, diagnóstico ou menção a resultado. Antes de mantê-la no site público:
+
+- obtenha autorização específica e documentada para os trechos;
+- registre canal, finalidade, prazo e forma de revogação;
+- confirme o enquadramento com a Codame/CRM-ES;
+- remova a seção se a autorização não puder ser comprovada.
+
+## Checklist editorial obrigatório
+
+Antes do lançamento definitivo, o médico responsável deve confirmar:
+
+- grafia do nome, CRM e RQEs;
+- títulos, sociedades e capacitações citados;
+- serviços efetivamente oferecidos;
+- telefone, endereços, CEPs e modalidades das duas unidades;
+- autorização e enquadramento dos relatos reproduzidos;
+- direitos de uso das fotografias e do certificado;
+- aprovação final da comunicação conforme a Resolução CFM nº 2.336/2023.
+
+O primeiro contato do WhatsApp é propositalmente neutro e não solicita dados clínicos.

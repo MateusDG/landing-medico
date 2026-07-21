@@ -1,0 +1,60 @@
+"use client";
+
+import { Reveal, Rasura } from "../kit";
+import { SectionShell } from "../SectionShell";
+
+const ITENS = [
+  {
+    errado: "agência full service",
+    certo: "um estagiário respondendo às suas mensagens",
+  },
+  {
+    errado: "resultados em 30 dias",
+    certo: "reunião de alinhamento nº 14",
+  },
+  {
+    errado: "relatório mensal",
+    certo: "PDF de 40 páginas sem a única métrica que importa",
+  },
+  {
+    errado: "contrato de 12 meses",
+    certo: "multa para quem decide sair",
+  },
+];
+
+export function Errata() {
+  return (
+    <SectionShell
+      id="errata"
+      folio="03"
+      chapeu="Errata · as promessas que você já ouviu, corrigidas"
+      manchete={
+        <>
+          Corrige-se hoje o que o mercado{" "}
+          <em className="em-swash">publicou ontem.</em>
+        </>
+      }
+    >
+      <div className="max-w-[62ch] space-y-8">
+        {ITENS.map((item, i) => (
+          <Reveal key={i} delay={i * 0.08}>
+            <p className="border-b border-tinta/15 pb-8 text-lg leading-relaxed md:text-xl">
+              <span className="text-tinta/60">Onde se leu</span>{" "}
+              <Rasura>&ldquo;{item.errado}&rdquo;</Rasura>
+              <span className="text-tinta/60">, leia-se</span>{" "}
+              <em className="em-swash text-[1.15em]">
+                &ldquo;{item.certo}&rdquo;.
+              </em>
+            </p>
+          </Reveal>
+        ))}
+        <Reveal delay={0.2}>
+          <p className="text-lg leading-relaxed md:text-xl">
+            A partir desta edição, publica-se diferente — e o resto desta
+            página mostra <em className="em-swash">como.</em>
+          </p>
+        </Reveal>
+      </div>
+    </SectionShell>
+  );
+}

@@ -1,0 +1,174 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { Reveal } from "../kit";
+import { SectionShell } from "../SectionShell";
+import { SetaCiclo } from "../art";
+
+const SEMANAS = [
+  {
+    num: "S1",
+    nome: "Apuração",
+    texto:
+      "Dados da edição anterior analisados no painel, hipóteses registradas em pauta.",
+  },
+  {
+    num: "S2",
+    nome: "Pauta",
+    texto:
+      "Anúncios novos no ar, variação B da página publicada, fluxo de e-mail revisado.",
+  },
+  {
+    num: "S3",
+    nome: "Impressão",
+    texto:
+      "Testes em andamento, verba realocada para os conjuntos vencedores, automação refinada.",
+  },
+  {
+    num: "S4",
+    nome: "Banca",
+    texto:
+      "Resultado consolidado no seu painel, reunião de 30 minutos e a pauta seguinte já aberta.",
+  },
+];
+
+function useMeasure<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      setSize({ w: el.clientWidth, h: el.clientHeight });
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return [ref, size] as const;
+}
+
+export function Fechamento() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 0.75", "end 0.55"],
+  });
+
+  const [reguaHRef, reguaHSize] = useMeasure<HTMLDivElement>();
+  const [reguaVRef, reguaVSize] = useMeasure<HTMLDivElement>();
+
+  const MARKER = 10;
+  const x = useTransform(scrollYProgress, (v) => v * Math.max(0, reguaHSize.w - MARKER));
+  const y = useTransform(scrollYProgress, (v) => v * Math.max(0, reguaVSize.h - MARKER));
+
+  return (
+    <SectionShell
+      id="fechamento"
+      folio="06"
+      chapeu="O fechamento · o que acontece todo mês"
+      manchete={
+        <>
+          Toda edição segue o mesmo <em className="em-swash">rito.</em>
+        </>
+      }
+    >
+      <div ref={sectionRef}>
+        {/* ——— Desktop: régua horizontal ——— */}
+        <div className="hidden md:block">
+          <div ref={reguaHRef} className="relative h-10">
+            {/* linha base */}
+            <div className="absolute right-0 bottom-0 left-0 h-px bg-tinta/40" aria-hidden />
+            {/* marcas de semana */}
+            {[0, 25, 50, 75, 100].map((pct) => (
+              <div
+                key={pct}
+                aria-hidden
+                className="absolute bottom-0 h-3 w-px bg-tinta/40"
+                style={{ left: `${pct}%` }}
+              />
+            ))}
+            {/* marcador que percorre a régua com o scroll */}
+            {!reduce && (
+              <motion.div
+                aria-hidden
+                className="absolute bottom-[-4.5px] size-2.5 bg-tinta"
+                style={{ x }}
+              />
+            )}
+          </div>
+
+          <div className="mt-8 grid grid-cols-4 gap-8">
+            {SEMANAS.map((s, i) => (
+              <Reveal key={s.num} delay={i * 0.08}>
+                <div>
+                  <p className="font-mono text-sm text-tinta/60">{s.num}</p>
+                  <h3 className="manchete mt-1 text-2xl">{s.nome}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-tinta/85">
+                    {s.texto}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* ——— Mobile: régua vertical na margem ——— */}
+        <div className="relative md:hidden">
+          <div ref={reguaVRef} className="absolute top-1 bottom-1 left-1 w-4">
+            <div className="absolute top-0 bottom-0 left-1.5 w-px bg-tinta/40" aria-hidden />
+            {[0, 33, 66, 100].map((pct) => (
+              <div
+                key={pct}
+                aria-hidden
+                className="absolute left-0 h-px w-3.5 bg-tinta/40"
+                style={{ top: `${pct}%` }}
+              />
+            ))}
+            {!reduce && (
+              <motion.div
+                aria-hidden
+                className="absolute left-[1.5px] size-2.5 -translate-x-1/2 bg-tinta"
+                style={{ y }}
+              />
+            )}
+          </div>
+
+          <div className="space-y-10 pl-12">
+            {SEMANAS.map((s, i) => (
+              <Reveal key={s.num} delay={i * 0.06}>
+                <div>
+                  <p className="font-mono text-sm text-tinta/60">{s.num}</p>
+                  <h3 className="manchete mt-1 text-2xl">{s.nome}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-tinta/85">
+                    {s.texto}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Fecho: o ciclo recomeça */}
+        <Reveal delay={0.1}>
+          <div className="mt-14 flex flex-wrap items-center gap-5">
+            <div className="text-tinta/70">
+              <SetaCiclo />
+            </div>
+            <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-tinta/60">
+              O ciclo recomeça
+            </p>
+            <p className="w-full max-w-[62ch] text-lg leading-relaxed">
+              No dia 1º, a próxima edição já está em produção. O ciclo nº 13 é
+              igual ao nº 1:{" "}
+              <em className="em-swash">
+                o rigor não diminui depois da assinatura.
+              </em>
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </SectionShell>
+  );
+}
